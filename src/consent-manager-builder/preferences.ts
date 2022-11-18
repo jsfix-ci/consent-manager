@@ -16,7 +16,7 @@ export interface PreferencesManager {
 // TODO: harden against invalid cookies
 // TODO: harden against different versions of cookies
 export function loadPreferences(cookieName?: string): Preferences {
-  const preferences = cookies.getJSON(cookieName || DEFAULT_COOKIE_NAME)
+  const preferences = cookies.get(cookieName || DEFAULT_COOKIE_NAME)
 
   if (!preferences) {
     return {}
@@ -70,7 +70,7 @@ export function savePreferences({
     custom: customPreferences
   }
 
-  cookies.set(cookieName || DEFAULT_COOKIE_NAME, value, {
+  cookies.set(cookieName || DEFAULT_COOKIE_NAME, JSON.stringify(value), {
     expires,
     domain
   })

@@ -5,11 +5,11 @@ import { docco } from 'react-syntax-highlighter/dist/esm/styles/hljs'
 import SyntaxHighlighter from 'react-syntax-highlighter'
 
 const CookieView = () => {
-  const [cookieVal, updateCookieVal] = useState(cookies.getJSON())
+  const [cookieVal, updateCookieVal] = useState(cookies.get())
 
   useEffect(() => {
     const clear = setInterval(() => {
-      updateCookieVal(cookies.getJSON())
+      updateCookieVal(cookies.get())
     }, 1000)
     return () => clearInterval(clear)
   })
@@ -23,7 +23,7 @@ const CookieView = () => {
 
       <Button
         onClick={() => {
-          const allCookies = cookies.getJSON()
+          const allCookies = cookies.get()
           Object.keys(allCookies).forEach(key => {
             cookies.remove(key)
           })
